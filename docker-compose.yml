@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  episodes-task-db:
+    build:
+      context: ./docker-files/database
+    image: episodes-task-containers/episodes-task-db
+    container_name: episodes-task-database
+    ports:
+      - "3306:3306"
+    volumes:
+      - episodes-task-data:/var/lib/mysql
+
+  episodes-task:
+    build:
+      context: .
+    image: episodes-task-containers/episodes-task-app
+    container_name: episodes-task-application
+    ports:
+      - "8080:8080"
+      
+volumes:
+  episodes-task-data: {}

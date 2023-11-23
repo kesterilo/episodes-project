@@ -2,23 +2,22 @@ package com.tasks.episodesproject.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Setter
 @Getter
@@ -26,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "locations")
-public class Location {
+public class Location implements Entities{
   
   
   @Id
@@ -34,23 +33,29 @@ public class Location {
   @Column(name = "id")
   private long id;
   
+  @NotBlank(message = "Add Location name")
   @NonNull
   @Column(nullable = false)
   private String name;
   
+  @NotNull(message = "Add Latitude")
   @NonNull
   @Column(nullable = false)
   private double latitude;
   
+  @NotNull(message = "Add Longitude")
   @NonNull
   @Column(nullable = false)
   private double longitude;
   
-  @NonNull
-  @Column(nullable = false)
+  @CreationTimestamp
+  @Column(nullable = false, updatable = false)
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
   private LocalDateTime created;
   
   @JsonIgnore
-  @OneToOne(mappedBy = "location", cascade = CascadeType.ALL)
-  private Character character;
+  @OneToOne(optional = false)
+  @JoinColumn(name = "characters_id", referencedColumnName = "id")
+  private Characters character;
+
 }

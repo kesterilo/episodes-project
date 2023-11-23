@@ -1,24 +1,23 @@
 package com.tasks.episodesproject.entity;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 
 @Setter
@@ -27,27 +26,32 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "comments")
-public class Comment {
+public class Comment implements Entities{
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private long id;
   
+  @Size(max = 250)
+  @NotBlank(message = "Add Comment")
   @NonNull
   @Column(nullable = false)
   private String comment;
   
+  @NotBlank(message = "Add Location")
   @NonNull
   @Column(nullable = false)
   private String ipAddressLocation;
   
-  @NonNull
-  @Column(nullable = false)
+  @CreationTimestamp
+  @Column(nullable = false, updatable = false)
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
   private LocalDateTime created;
   
   @JsonIgnore
-  @ManyToOne
+  @ManyToOne(optional = false)
   @JoinColumn(name = "episode_id", referencedColumnName = "id")
   private Episode episode;
+ 
 }

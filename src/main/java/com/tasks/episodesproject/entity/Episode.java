@@ -1,28 +1,26 @@
 package com.tasks.episodesproject.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 
 @Setter
@@ -31,41 +29,49 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "episodes")
-public class Episode {
+public class Episode implements Entities{
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
+  @Column(name = "id", updatable = false)
   private long id;
   
+  @NotBlank(message = "Add Episode name")
   @NonNull
   @Column(nullable = false)
   private String name;
   
+  @NotNull(message = "Add Release date")
   @NonNull
   @Column(nullable = false)
-  private LocalDateTime releaseDate;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+  private LocalDate releaseDate;
   
+  @NotBlank(message = "Add Episode Code")
   @NonNull
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String episodeCode;
   
-  @JsonIgnore
-  @ManyToMany
-  @JoinTable(
-    name = "character_episode",
-    joinColumns = @JoinColumn(name = "episode_id",
-      referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "character_id",
-      referencedColumnName = "id")  
-  )
-  private Set<Character> characters;
+  @ManyToMany(mappedBy = "episodes", cascade = CascadeType.PERSIST)
+  private Set<Characters> characters;
   
-  @Column
-  @OneToMany(mappedBy = "episode", cascade = CascadeType.ALL)
-  private Set<Comment> episodeComments;
+  @OneToMany(mappedBy = "episode", cascade = CascadeType.ALL) 
+  private List<Comment> episodeComments;
   
-  @NonNull
-  @Column(nullable = false)
+  @CreationTimestamp
+  @Column(nullable = false, updatable = false)
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
   private LocalDateTime created;
+  
+  
+  @Override
+  public int hashCode() {
+    return (getEpisodeCode() + getName()).hashCode();
+  }
+  
+  @Override
+  public boolean equals(Object episode) {
+    return getEpisodeCode().equals(((Episode) episode).getEpisodeCode());
+  }
+  
 }

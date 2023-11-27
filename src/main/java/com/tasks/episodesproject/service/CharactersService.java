@@ -8,11 +8,11 @@ import com.tasks.episodesproject.dto.EpisodeDTO;
 import com.tasks.episodesproject.entity.Characters;
 import com.tasks.episodesproject.entity.Episode;
 import com.tasks.episodesproject.entity.Location;
-import com.tasks.episodesproject.filter.queryFilter;
+import com.tasks.episodesproject.filter.CharacterFilter;
 
 public interface CharactersService {
 
-  List<Characters> getAllCharacters(queryFilter filter, Sort sort);
+  List<Characters> getAllCharacters(CharacterFilter filter, Sort sort);
 
   Characters getCharacter(Long id);
 

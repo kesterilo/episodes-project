@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CharacterSpecification {
   
-  public static Specification<Characters> filterBy(queryFilter characterFilter) {
+  public static Specification<Characters> filterBy(CharacterFilter characterFilter) {
     return Specification
         .where(hasGender(characterFilter.getGender()))
         .and(hasStatus(characterFilter.getStatus()));
-        // .and(hasLocation(characterFilter.getLocation()));
   }
   
   
@@ -26,9 +25,4 @@ public class CharacterSpecification {
     return ((root, query, cb) -> status == null || status.isEmpty() ? cb.conjunction()
         : cb.equal(root.get("status"), status));
   }
-  
-  // private static Specification<Location> hasLocation(String location) {
-  //   return ((root, query, cb) -> location == null || location.isEmpty() ? cb.conjunction()
-  //       : cb.equal(root.get("name"), location));
-  // }
 }

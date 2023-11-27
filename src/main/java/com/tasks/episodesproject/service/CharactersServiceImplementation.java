@@ -17,7 +17,7 @@ import com.tasks.episodesproject.dto.EpisodeDTOMapper;
 import com.tasks.episodesproject.entity.Characters;
 import com.tasks.episodesproject.entity.Episode;
 import com.tasks.episodesproject.entity.Location;
-import com.tasks.episodesproject.filter.queryFilter;
+import com.tasks.episodesproject.filter.CharacterFilter;
 import com.tasks.episodesproject.filter.CharacterSpecification;
 import com.tasks.episodesproject.repository.CharactersRepository;
 import com.tasks.episodesproject.repository.EpisodeRepository;
@@ -84,7 +84,7 @@ public class CharactersServiceImplementation implements CharactersService {
   
   
   @Override
-  public List<Characters> getAllCharacters(queryFilter characterFilter, Sort sort) {
+  public List<Characters> getAllCharacters(CharacterFilter characterFilter, Sort sort) {
     if (!(characterFilter.getLocation() == null)) {
       Location location = locationRepository.findByName(characterFilter.getLocation());
       return Arrays.asList(location.getCharacter());

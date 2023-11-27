@@ -1,7 +1,5 @@
 package com.tasks.episodesproject.filter;
 
-import org.springframework.stereotype.Component;
-
 import lombok.*;
 
 
@@ -9,8 +7,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
-public class queryFilter {
+public class CharacterFilter {
   private String gender;
   private String status;
   private String location;

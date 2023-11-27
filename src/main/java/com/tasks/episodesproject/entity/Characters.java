@@ -50,7 +50,8 @@ public class Characters implements Entities{
   @Column(name = "last_name", nullable = false)
   private String lastName;
   
-  @Status (message = "Status must be ACTIVE, DEAD OR UNKNOWN. In capital letters.")
+  @Status(message = "Status must be ACTIVE, DEAD OR UNKNOWN. In capital letters.")
+  @NotBlank(message = "Character must have Status")
   @NonNull
   @Column(nullable = false)
   private String status;
@@ -59,6 +60,7 @@ public class Characters implements Entities{
   private String stateOfOrigin;
   
   @Gender(message = "Gender must be MALE OR FEMALE. In capital letters.")
+  @NotBlank(message = "Character must have Gender")
   @NonNull
   @Column(nullable = false)
   private String gender;

@@ -1,6 +1,6 @@
 FROM openjdk:17 AS BUILD_ARTIFACT
 WORKDIR /usr/src/app/
-RUN apt update && apt install maven -y
+RUN apt-get update && apt-get install maven -y
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project
 RUN mvn install -DskipTests

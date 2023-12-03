@@ -3,6 +3,7 @@ RUN apt update
 RUN apt install openjdk-17-jdk-headless -y
 RUN apt install maven -y
 WORKDIR /usr/src/app/
+RUN apt-get install git -y
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project
 RUN mvn install -DskipTests

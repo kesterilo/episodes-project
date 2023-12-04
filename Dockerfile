@@ -9,7 +9,6 @@ RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.
 RUN tar xvf apache-maven-3.9.6-bin.tar.gz
 RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /usr/local/bin/mvn
 RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
-RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /bin/mvn
 WORKDIR /usr/src/app/
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project

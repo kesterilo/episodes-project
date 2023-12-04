@@ -8,10 +8,15 @@ RUN mkdir -p /opt/maven
 RUN cd /opt/maven
 RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
 RUN tar xzf apache-maven-3.9.6-bin.tar.gz
+RUN ln -s /opt/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
+ENV MAVEN_HOME /opt/maven
+ENV MAVEN_CONFIG /root/.m2
+ENV JAVA_HOME /usr/lib/jvm/default-jvm/
 WORKDIR /usr/src/app/
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project
-RUN /opt/maven/apache-maven-3.9.6/bin/mvn clean package -DskipTests 
+RUN mvn clean package -DskipTests
+
 
 
 FROM openjdk:17

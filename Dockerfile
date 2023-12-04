@@ -12,13 +12,13 @@ RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
 WORKDIR /usr/src/app/
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project
-RUN mvn clean install -DskipTests
+RUN /opt/apache-maven-3.9.6/bin/mvn clean package -DskipTests 
 
 
 FROM openjdk:17
 
 WORKDIR /usr/src/app/
-COPY --from=BUILD_ARTIFACT /usr/src/app/episodes-project/target/episodes-project-0.0.1.jar ./episodes-project-0.0.1.jar
+COPY --from=BUILD_ARTIFACT /usr/src/app/episodes-project/target/episodes-project-0.0.1-SNAPSHOT.jar ./episodes-project-0.0.1.jar
 
 EXPOSE 8080
 ENTRYPOINT [ "java", "-jar", "episodes-project-0.0.1.jar.jar" ]

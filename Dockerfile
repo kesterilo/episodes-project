@@ -11,7 +11,7 @@ WORKDIR /usr/src/app/
 RUN apt-get install git -y
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project
-RUN mvn clean install -DskipTests
+RUN /opt/apache-maven-3.9.6/bin/mvn clean install -DskipTests
 
 
 FROM openjdk:17

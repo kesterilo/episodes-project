@@ -4,15 +4,14 @@ RUN apt install openjdk-17-jdk-headless -y
 RUN apt-get install git -y
 RUN apt install wget -y
 # Install maven
-RUN cd /opt
+RUN mkdir -p /opt/maven
+RUN cd /opt/maven
 RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
-RUN tar xvf apache-maven-3.9.6-bin.tar.gz
-RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /usr/local/bin/mvn
-RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
+RUN tar xzf apache-maven-3.9.6-bin.tar.gz
 WORKDIR /usr/src/app/
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project
-RUN /opt/apache-maven-3.9.6/bin/mvn clean package -DskipTests 
+RUN /opt/maven/apache-maven-3.9.6/bin/mvn clean package -DskipTests 
 
 
 FROM openjdk:17

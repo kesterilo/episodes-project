@@ -1,14 +1,16 @@
 FROM ubuntu:20.04 AS BUILD_ARTIFACT
 RUN apt update
 RUN apt install openjdk-17-jdk-headless -y
-# RUN apt install maven -y
-RUN cd /opt
+RUN apt-get install git -y
 RUN apt install wget -y
+# Install maven
+RUN cd /opt
 RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
 RUN tar xvf apache-maven-3.9.6-bin.tar.gz
 RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /usr/local/bin/mvn
+RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
+RUN ln -s /opt/apache-maven-3.9.6/bin/mvn /bin/mvn
 WORKDIR /usr/src/app/
-RUN apt-get install git -y
 RUN git clone https://github.com/kesterilo/episodes-project.git
 RUN cd episodes-project
 RUN mvn clean install -DskipTests

@@ -17,17 +17,17 @@ ENV MAVEN_CONFIG /.m2
 # WORKDIR /usr/src/episodes-project/
 # RUN cd episodes-project
 COPY * .
-RUN /apache-maven-3.9.6/bin/mvn package -DskipTests
+RUN /apache-maven-3.9.6/bin/mvn package
 
 
 
 FROM openjdk:17
 
 WORKDIR /usr/src/app/
-COPY --from=BUILD_ARTIFACT target/episodes-project-0.0.1-SNAPSHOT.jar ./episodes-project-0.0.1.jar
+COPY --from=BUILD_ARTIFACT target/episodes-project-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "episodes-project-0.0.1.jar" ]
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
 
 
 

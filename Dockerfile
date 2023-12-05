@@ -2,13 +2,12 @@ FROM ubuntu:20.04 AS BUILD_ARTIFACT
 RUN apt update
 RUN apt install openjdk-17-jdk-headless -y
 RUN apt-get install git -y
-RUN apt install wget -y
+# RUN apt install wget -y
 # Install maven
 RUN mkdir -p /opt/maven
 RUN cd /opt/maven
-RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+RUN curl -O https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
 RUN tar xzf apache-maven-3.9.6-bin.tar.gz
-RUN ls /opt/maven
 RUN ln /opt/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
 ENV MAVEN_HOME /opt/maven
 ENV MAVEN_CONFIG /root/.m2

@@ -11,7 +11,7 @@ RUN tar xzf apache-maven-3.9.6-bin.tar.gz
 # RUN ln /opt/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
 ENV MAVEN_HOME /
 ENV MAVEN_CONFIG /.m2
-ENV JAVA_HOME /usr/lib/jvm/default-jvm/
+ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 # RUN apt install maven -y
 # RUN git clone https://github.com/kesterilo/episodes-project.git
 # WORKDIR /usr/src/episodes-project/

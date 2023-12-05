@@ -17,7 +17,7 @@ ENV JAVA_HOME /usr/lib/jvm/default-jvm/
 # WORKDIR /usr/src/episodes-project/
 # RUN cd episodes-project
 COPY * .
-RUN /apache-maven-3.9.6/bin/mvn clean 
+RUN /apache-maven-3.9.6/bin/mvn clean package
 # RUN /apache-maven-3.9.6/bin/mvn clean package spring-boot:repackage
 
 

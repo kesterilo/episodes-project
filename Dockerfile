@@ -47,6 +47,6 @@
 
 
 FROM openjdk:17
-ADD target/episodes-project-0.0.1-SNAPSHOT.jar app.jar
+ADD episodes-project-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 EXPOSE 8080

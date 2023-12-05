@@ -27,7 +27,7 @@ WORKDIR /usr/src/app/
 COPY --from=BUILD_ARTIFACT target/episodes-project-0.0.1-SNAPSHOT.jar ./episodes-project-0.0.1.jar
 
 EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "episodes-project-0.0.1.jar.jar" ]
+ENTRYPOINT [ "java", "-jar", "episodes-project-0.0.1.jar" ]
 
 
 

@@ -9,8 +9,8 @@ RUN apt install wget -y
 RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
 RUN tar xzf apache-maven-3.9.6-bin.tar.gz
 # RUN ln /opt/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
-ENV MAVEN_HOME /
-ENV MAVEN_CONFIG /.m2
+# ENV MAVEN_HOME /
+# ENV MAVEN_CONFIG /.m2
 # ENV JAVA_HOME /usr/lib/jvm/default-jvm/
 # RUN apt install maven -y
 # RUN git clone https://github.com/kesterilo/episodes-project.git
@@ -18,6 +18,8 @@ ENV MAVEN_CONFIG /.m2
 # RUN cd episodes-project
 COPY * .
 RUN /apache-maven-3.9.6/bin/mvn clean package -e
+# RUN /apache-maven-3.9.6/bin/mvn clean package spring-boot:repackage
+
 
 
 

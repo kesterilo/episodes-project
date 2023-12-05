@@ -17,8 +17,8 @@ RUN tar xzf apache-maven-3.9.6-bin.tar.gz
 # WORKDIR /usr/src/episodes-project/
 # RUN cd episodes-project
 COPY * .
-RUN /apache-maven-3.9.6/bin/mvn clean package -e
-# RUN /apache-maven-3.9.6/bin/mvn clean package spring-boot:repackage
+# RUN /apache-maven-3.9.6/bin/mvn clean package -e
+RUN /apache-maven-3.9.6/bin/mvn clean package spring-boot:repackage
 
 
 

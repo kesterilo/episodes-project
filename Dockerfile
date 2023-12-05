@@ -14,7 +14,7 @@ ENV MAVEN_CONFIG /.m2
 # ENV JAVA_HOME /usr/lib/jvm/default-jvm/
 # RUN apt install maven -y
 # WORKDIR /usr/src/app/
-RUN git clone https://github.com/kesterilo/episodes-project.git
+RUN git clone https://github.com/kesterilo/episodes-project
 RUN cd /episodes-project
 RUN /apache-maven-3.9.6/bin/mvn clean package -DskipTests
 

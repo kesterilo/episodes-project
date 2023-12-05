@@ -83,14 +83,13 @@
           </execution>
         </executions> -->
 				<configuration>
+					<mainClass>com.tasks.episodesproject.EpisodesProjectApplication</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-					
-					
 				</configuration>
 			</plugin>
 		</plugins>

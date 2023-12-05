@@ -16,7 +16,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 # RUN git clone https://github.com/kesterilo/episodes-project.git
 # WORKDIR /usr/src/episodes-project/
 # RUN cd episodes-project
-COPY * .
+ADD * .
 RUN /apache-maven-3.9.6/bin/mvn clean package
 # RUN /apache-maven-3.9.6/bin/mvn clean package spring-boot:repackage
 

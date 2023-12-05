@@ -6,7 +6,7 @@ RUN apt-get install git -y
 # Install maven
 RUN mkdir -p /opt/maven
 RUN cd /opt/maven
-RUN curl -O https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+RUN curl https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz -O
 RUN tar xzf apache-maven-3.9.6-bin.tar.gz
 RUN ln /opt/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
 ENV MAVEN_HOME /opt/maven

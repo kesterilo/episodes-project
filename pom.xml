@@ -71,7 +71,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
+				<!-- <executions>
           <execution>
             <id>repackage</id>
             <goals>
@@ -81,7 +81,7 @@
               <skip>true</skip>
             </configuration>
           </execution>
-        </executions>
+        </executions> -->
 				<configuration>
 					<excludes>
 						<exclude>

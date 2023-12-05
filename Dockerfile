@@ -8,6 +8,7 @@ RUN mkdir -p /opt/maven
 RUN cd /opt/maven
 RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
 RUN tar xzf apache-maven-3.9.6-bin.tar.gz
+RUN ls /opt/maven
 RUN ln /opt/maven/apache-maven-3.9.6/bin/mvn /usr/bin/mvn
 ENV MAVEN_HOME /opt/maven
 ENV MAVEN_CONFIG /root/.m2

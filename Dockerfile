@@ -1,7 +1,7 @@
 FROM ubuntu:20.04 AS BUILD_ARTIFACT
 RUN apt update
 RUN apt install openjdk-17-jdk-headless -y
-RUN apt-get install git -y
+# RUN apt-get install git -y
 RUN apt install wget -y
 # Install maven
 # RUN mkdir -p /opt/maven
@@ -17,7 +17,7 @@ ENV MAVEN_CONFIG /.m2
 # WORKDIR /usr/src/episodes-project/
 # RUN cd episodes-project
 COPY * .
-RUN /apache-maven-3.9.6/bin/mvn package
+RUN /apache-maven-3.9.6/bin/mvn clean package -e
 
 
 

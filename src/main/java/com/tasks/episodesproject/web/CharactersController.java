@@ -153,7 +153,7 @@ public class CharactersController {
   // Put Request. Edit an existing Character
   @Operation(
       summary = "Edit an existing Character in the database.",
-      description = "Edit the properties of an existing Character. The request must contain mandatory fields in JSON as request body. The request returns the edited Character object.",
+      description = "Modify the properties of an existing Character. The request must contain mandatory fields in JSON as request body. The request returns the edited Character object.",
       responses = {
           @ApiResponse(
               responseCode="200",
@@ -338,7 +338,7 @@ public class CharactersController {
   // Get Request. Get the Episodes of a Character
   @Operation(
       summary = "Get the Episodes of a specified Character.",
-      description = "Get the Episodes of the Character specified by the passed-in ID. The request must have a Character ID. The request returns a list of Episodes the Character featured in.",
+      description = "Get the Episodes of the Character specified by the passed-in ID. The request must have a Character ID. The request returns a list of Episodes that Character featured in.",
       responses = {
           @ApiResponse(
               responseCode="200",

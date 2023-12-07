@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 
-@Tag(name = "Search Controller", description = "Search the Database")
+@Tag(name = "Search Controller", description = "Search the Database for Characters and get a list or lists of their Episodes.")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/search")
@@ -34,7 +34,7 @@ public class SearchController {
   // Search Request. Search for episodes
   @Operation(
       summary = "Search for Characters",
-      description = "Search the database for Characters. The request takes in the search-word as a parameter query. Search-word could be Firstname, Lastname or both names. The request returns an array of arrays of Episodes featuring Characters whose names contain the search-word. Each array of Episodes belong to a Character",
+      description = "Search the database for Characters. The request takes in the search-word as a parameter query. Search-word could be Firstname, Lastname or both names. The request returns an array of arrays of Episodes featuring Characters whose names contain the search-word. Each array of Episodes belongs to a Character.",
       responses = {
           @ApiResponse(
               responseCode="200",

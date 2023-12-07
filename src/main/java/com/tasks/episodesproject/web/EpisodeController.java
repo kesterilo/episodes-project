@@ -176,7 +176,7 @@ public class EpisodeController {
   // Delete Request. Delete an existing Episode
   @Operation(
       summary = "Delete an existing Episode in the database.",
-      description = "Delete an existing Episode specified by the passed-in ID. The request must have a Episode ID.",
+      description = "Delete an existing Episode specified by the passed-in ID. The request must have an Episode ID.",
       responses = {
           @ApiResponse(
               responseCode="200",
@@ -242,7 +242,7 @@ public class EpisodeController {
   // Put Request. Add a Character to an existing Episode
   @Operation(
       summary = "Add a Character to an Episode.",
-      description = "Add a Character to an Episode that already exists. The request must have an Episode ID and a Character in JSON in its request body. Returns a DTO Object containing the specified Episode and its comment counts",
+      description = "Add a Character to an Episode that already exists. The request must have an Episode ID and a Character in JSON in its request body. Returns a DTO Object containing the specified Episode and its number of comments",
       responses = {
           @ApiResponse(
               responseCode="200",
@@ -318,7 +318,7 @@ public class EpisodeController {
   // Get Request. Get Comments in an Episode.
   @Operation(
       summary = "Get the Comments in an Episode.",
-      description = "Get the Comments in the Episode specified by the passed-in ID. The request must have an Episode ID. Returns a List of Comments. The Comments are returned in a decending sort order by 'date created'.",
+      description = "Get the Comments in the Episode specified by the passed-in ID. The request must have an Episode ID. Returns a List of Comments. The Comments are returned in a descending sort order by 'date created'.",
       responses = {
           @ApiResponse(
               responseCode="200",
